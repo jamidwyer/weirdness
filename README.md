@@ -1,0 +1,132 @@
+# Weirdness Calculator
+
+Calculates a user's weirdness based on their favorite GIFs.
+
+### Develop
+
+Step 1: Clone this repo
+```
+git clone https://github.com/jamidwyer/weirdness.git
+cd weirdness
+```
+
+Step 2: Install
+
+```
+npm install
+```
+
+Step 3: Start
+
+```
+npm run dev
+```
+
+### Test
+
+```
+npm run test
+```
+
+Put your tests under `__tests__` directory, and suffix the filename with `spec` or `test`. For example, `MyFancyComponent.test.js` or `whatever_folder/AnotherComponent.spec.js`.
+
+### Lint
+
+```
+npm run lint
+```
+
+### Build
+```
+npm run build     # build a minified production version
+npm run build:s3  # build a minified production version, deploy it to S3 as a static app
+```
+
+To check the build, go to the project root directory. Serve the build directory:
+
+```
+npm i -g http-server
+http-server
+```
+
+By default http-server will serve your production build at port 8080.  Docs are [here](https://www.npmjs.com/package/http-server).
+
+Navigate to [that address](http://localhost:8080) to see your build.
+
+
+### Folder Structure
+
+The entry point of your application is `src/js/routes`, it's basically a mapping between your `views` to a `route`.
+
+All your javascript code lives in folder `src/js`
+
+```
+  -- src/
+    -- js/
+      -- common/
+        -- api/          --> all api requests
+        -- components/   --> all share components
+        -- types/        --> all flow types
+      -- redux/
+        -- modules/      --> all redux code
+        -- selectors/    --> all reselect code
+      -- utility/        --> all non JSX utility
+      -- views/          --> all JSX code hook up with Route ( HoC ) or page specific components
+    -- style/            --> all global styles, layout, config
+    -- assets/           --> all static assets ( image, fonts ... etc )
+      -- template/       --> you probably won't touch this unless you want to create new template
+
+```
+### TODO
+
+Setup
+Clean commits
+Build mockup
+Clean and legible code -- do they use prettier, eslint, airbnb?
+Enter a search term
+The app will display a matching GIF starting on 0
+weirdness: https://developers.giphy.com/docs/#operation--gifs-translate-get
+If no results, indicate that
+Using a slider, users should be able to then increase the weirdness and receive weirder and weirder results through 10 on Giphy’s weirdness scale
+When a user finds a GIF they like, they can add it to their list of favorite GIFs by pressing the Like button
+Only allow one liked GIF per search term
+After they like, prompt them to enter a new search term
+User can unlike a GIF
+Once a user selects their 5 favorite GIFs, they will be
+prompted to see their result telling them how weird they are.
+When users click the “Calculate…” button, they should see their average “weirdness”, to
+the nearest whole number, on a new route (e.g. “/results”)
+Loading indicators
+Error states
+Input validation
+Squash if needed
+Review user requirements again
+Improve user experience if needed
+Responsiveness
+Build increment alternative
+Build safe mode
+npm build
+npm deploy
+Discuss pros and cons of what I did
+Design shine
+Tests
+Cull dependencies -- reselect, babel type check, cli dashboard
+Look into deploy
+Docker
+Use yarn
+PR for outdated boilerplate dependencies
+
+### Rationale
+Started with [react-redux-boilerplate](https://github.com/iroy2000/react-redux-boilerplate), recommended as a [React starter kit](https://reactjs.org/community/starter-kits.html).
+
+Includes:
+* ES6 / ES7
+* PostCSS ( with CSS modules activated by default )
+* Reselect
+* i18n / i10n supports ( react-intl )
+* Lazy Loading component supports
+* Type Checking with Babel Type Check ( Flow syntax )
+* ESLint for syntax check
+* Jest and Enzyme for Unit testing
+* Production CSS / HTML / JS minification / Image optimization when built
+* Deploy files directly to S3
