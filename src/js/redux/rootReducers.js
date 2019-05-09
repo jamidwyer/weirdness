@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import example from './modules/example';
+import favorites from './reducers/favorites';
+import gifs from './reducers/gifs';
 
 export default combineReducers({
-  example,
+  favorites,
+  gifs,
 });

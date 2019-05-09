@@ -1,15 +1,15 @@
 import React, { PureComponent } from 'react';
 
-import styles from './Example.css';
+import styles from './Gif.css';
 
-class ExampleWithError extends PureComponent {
+class GifWithError extends PureComponent {
   render() {
-    const { example } = this.props;
-    const result = example && example.result ? example.result : null;
+    const { home } = this.props;
+    const result = home && home.result ? home.result : null;
 
     if (result && result.size && result.size > 0) {
       return (
-        <div className={styles.exampleOutput}>
+        <div className={styles.homeOutput}>
           <h1>This should catch by ErrorBoundary</h1>
           {result.something_not_existed.get('something_not_existed')}
         </div>
@@ -19,4 +19,4 @@ class ExampleWithError extends PureComponent {
   }
 }
 
-export default ExampleWithError;
+export default GifWithError;

@@ -8,7 +8,7 @@ import config from 'config';
 // Please read the following link if
 // you have no idea how to use this feature
 // https://github.com/motdotla/dotenv
-require('dotenv').config({ silent: true });
+const dotenv = require('dotenv');
 
 // trace which loader is deprecated
 // feel free to remove that if you don't need this feature
@@ -128,6 +128,12 @@ const COMMON_LOADERS = [
 // ===============================================================================
 export const JS_SOURCE = config.get('jsSourcePath');
 
+const env = dotenv.config().parsed;
+const envKeys = Object.keys(env).reduce((prev, next) => {
+  prev[`process.env.${next}`] = JSON.stringify(env[next]);
+  return prev;
+}, {});
+
 export default {
   output: {
     path: path.join(__dirname, 'docroot'),
@@ -150,6 +156,7 @@ export default {
     ],
   },
   plugins: [
+    new webpack.DefinePlugin(envKeys),
     new webpack.IgnorePlugin(/vertx/), // https://github.com/webpack/webpack/issues/353
     new CaseSensitivePathsPlugin(),
   ],
