@@ -1,44 +1,36 @@
 import { combineReducers } from 'redux'
 import {
-  SELECT_SCORE,
   REQUEST_GIFS,
   REQUEST_GIFS_SUCCESS,
   REQUEST_GIFS_FAILED,
 } from '../actions/gifs'
 
-function selectedScore(state = 0, action) {
-  switch (action.type) {
-    case SELECT_SCORE:
-      return action.score
-    default:
-      return state
-  }
-}
+const initialState = {
+  isFetching: false,
+  gif: {},
+};
 
-function gifs(
-  state = {
-    isFetching: false,
-    gif: {},
-  },
-  action
-) {
+function gifs(state = initialState, action) {
   switch (action.type) {
     case REQUEST_GIFS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: true,
-      })
+      };
     case REQUEST_GIFS_SUCCESS:
-      console.log(action);
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: false,
-        // Fix when Giphy gives data back
-        //        gif: action.payload.data,
-        gif: action.payload,
-      })
+        // Giphy
+        gif: action.payload.data,
+        // Higher rate limit API
+        // gif: action.payload,
+      };
     case REQUEST_GIFS_FAILED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: false,
-      })
+      };
     default:
       return state;
   }
@@ -46,7 +38,6 @@ function gifs(
 
 const rootReducer = combineReducers({
   gifs,
-  selectedScore,
 })
 
 export default rootReducer;

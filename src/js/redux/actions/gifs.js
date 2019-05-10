@@ -36,18 +36,19 @@ const requestGifsFailed = (error) => ({
 });
 
 function getGif(searchTerm, weirdness) {
-  console.log(searchTerm, weirdness);
   return (dispatch) => {
     dispatch(requestGifs(searchTerm));
     // Giphy rate limit: 50 requests per hour.
     // better to use a placeholder unless testing gifs themselves
-    const url = `https://api.giphy.com/v1/gifs/translate?api_key=${GIPHY_API_KEY}&s=cheeseburgers&weirdness=0`;
+    const url = `https://api.giphy.com/v1/gifs/translate?api_key=${GIPHY_API_KEY}&s=cheeseburgers&weirdness=${weirdness}`;
     // const url = 'https://jsonplaceholder.typicode.com/photos';
     return axios
       .get(url)
       .then((res) => {
-        console.log(res.data[0]);
-        dispatch(requestGifsSuccess(res.data[0]));
+        // Giphy
+        dispatch(requestGifsSuccess(res.data));
+        // Placeholder
+        // dispatch(requestGifsSuccess(res.data[0]));
       })
       .catch((err) => {
         dispatch(requestGifsFailed(err.message));
@@ -57,7 +58,6 @@ function getGif(searchTerm, weirdness) {
 
 function shouldFetchGif(state) {
   const { gifs } = state;
-  console.log(gifs);
   if (!gifs) {
     return true;
   }
@@ -70,7 +70,6 @@ function shouldFetchGif(state) {
 export function fetchGifIfNeeded(searchTerm, weirdness) {
   return (dispatch, getState) => {
     if (shouldFetchGif(getState(), searchTerm)) {
-      console.log('getting');
       return dispatch(getGif(searchTerm, weirdness))
     }
     return null;
