@@ -78,20 +78,18 @@ All your javascript code lives in folder `src/js`
 
 ```
 ### TODO
-* Using a slider, users should be able to then increase the weirdness and receive weirder and weirder results through 10 on Giphy’s weirdness scale
 * Enter a search term
 * Clean commits
-* Like functionality
+* When a user finds a GIF they like, they can add it to their list of favorite GIFs by pressing the Like button
+* Slider doesn't trigger re-render
 * Acceptable style
 * If no results, indicate that
-* When a user finds a GIF they like, they can add it to their list of favorite GIFs by pressing the Like button
 * Only allow one liked GIF per search term
 * After they like, prompt them to enter a new search term
 * User can unlike a GIF
 * Once a user selects their 5 favorite GIFs, they will be
 prompted to see their result telling them how weird they are.
-* When users click the “Calculate…” button, they should see their average “weirdness”, to
-the nearest whole number, on a new route (e.g. “/results”)
+* When users click the “Calculate…” button, they should see their average “weirdness”, to the nearest whole number, on a new route (e.g. “/results”)
 * Loading indicators
 * Error states
 * Input validation

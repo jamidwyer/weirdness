@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import {
 //  setFavorite,
   fetchGifIfNeeded,
@@ -15,6 +16,11 @@ import { CustomSlider } from '../../common/components/CustomSlider';
 const Gif = LazyLoading(() => import('../../common/components/Gif/Gif'));
 
 class HomeView extends Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
   state = {
     searchTerm: '',
     weirdness: 0,
@@ -33,12 +39,24 @@ class HomeView extends Component {
     dispatch(fetchGifIfNeeded(searchTerm, weirdness[0]));
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    const { weirdness } = this.state;
+    const searchTerm = this.input.value;
+    this.setState({ searchTerm })
+    const { dispatch } = this.props;
+    console.log(searchTerm, weirdness);
+    dispatch(fetchGifIfNeeded(searchTerm, weirdness));
+  }
+
   render() {
     const { favorites, gifs } = this.props;
     const { gif } = gifs.gifs;
     if (!gif || gifs.isFetching) {
       return null;
     }
+
+    /* eslint-disable no-return-assign */
     return (
       <Fragment>
         <div style={{ display: 'flex', flexDirection: 'row' }}>
@@ -52,10 +70,16 @@ class HomeView extends Component {
               When you find a GIF you like, press the Like button. Once
               you like 5 GIFs, we&rsquo;ll show you how weird you are.
             </p>
-            Search term
-            <br />
-            <input />
-            <button type="submit">SEARCH</button>
+            <form
+              onSubmit={this.handleSubmit}
+            >
+              <label htmlFor="searchTerm">
+                Search Term:
+                <input name="searchTerm" type="text" id="searchTerm" ref={(input) => this.input = input} />
+              </label>
+              <input type="submit" value="Submit" />
+            </form>
+
             <h2>YOUR RESULT</h2>
             <Gif gif={gif} />
             <CustomSlider
