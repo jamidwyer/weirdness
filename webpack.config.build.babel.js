@@ -57,7 +57,7 @@ webpackConfig.module.rules = webpackConfig.module.rules.concat({
   test: /\.css$/,
   use: [
     {
-      loader: MiniCssExtractPlugin.loader
+      loader: MiniCssExtractPlugin.loader,
     },
     {
       loader: 'css-loader',

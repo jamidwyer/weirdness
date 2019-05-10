@@ -1,8 +1,8 @@
 @import "../../../../style/configs/color";
 
-/* Example handler
+/* Home handler
  ---------------------- */
- .exampleOutput {
+ .homeOutput {
    padding: 20px 60px 60px;
    border-radius: 6px;
    margin-bottom: 30px;

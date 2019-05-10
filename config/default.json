@@ -18,7 +18,7 @@
   "html": [
     {
 			"name": "homepage",
-      "title": "Everything is Awesome",
+      "title": "Weirdness Calculator",
       "template": "_default.html",
       "filename": "index.html"
     }
