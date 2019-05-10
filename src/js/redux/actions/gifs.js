@@ -40,7 +40,7 @@ function getGif(searchTerm, weirdness) {
     dispatch(requestGifs(searchTerm));
     // Giphy rate limit: 50 requests per hour.
     // better to use a placeholder unless testing gifs themselves
-    const url = `https://api.giphy.com/v1/gifs/translate?api_key=${GIPHY_API_KEY}&s=cheeseburgers&weirdness=${weirdness}`;
+    const url = `https://api.giphy.com/v1/gifs/translate?api_key=${GIPHY_API_KEY}&s=${searchTerm}&weirdness=${weirdness}`;
     // const url = 'https://jsonplaceholder.typicode.com/photos';
     return axios
       .get(url)
@@ -48,6 +48,7 @@ function getGif(searchTerm, weirdness) {
         // Giphy
         dispatch(requestGifsSuccess(res.data));
         // Placeholder
+        console.log(res.data);
         // dispatch(requestGifsSuccess(res.data[0]));
       })
       .catch((err) => {
