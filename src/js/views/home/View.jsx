@@ -1,73 +1,68 @@
-import React, { Component, Fragment } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import SplitterLayout from 'react-splitter-layout';
-import 'react-splitter-layout/lib/index.css';
 import {
 //  setFavorite,
   fetchGifIfNeeded,
 } from '../../redux/actions/gifs'
 
-import LazyLoading from '../../common/components/LazyLoading'
-import { HomeWithError } from '../../common/components/Home'
-import { ErrorBoundary } from '../../common/components/Utilities'
+import LazyLoading from '../../common/components/LazyLoading';
+import { HomeWithError } from '../../common/components/Home';
+import { ErrorBoundary } from '../../common/components/Utilities';
+import { CustomSlider } from '../../common/components/CustomSlider';
 
 // This is lazy loading example
-const Gif = LazyLoading(() => import('../../common/components/Gif/Gif'))
+const Gif = LazyLoading(() => import('../../common/components/Gif/Gif'));
 
 class HomeView extends Component {
-  static propTypes = {
-    gif: PropTypes.object.isRequired,
-  }
-
   state = {
+    searchTerm: '',
     weirdness: 0,
   }
 
   componentDidMount() {
-    const { weirdness } = this.state;
-    const { dispatch, searchTerm } = this.props;
+    const { searchTerm, weirdness } = this.state;
+    const { dispatch } = this.props;
     dispatch(fetchGifIfNeeded(searchTerm, weirdness));
   }
 
+  onChange(weirdness) {
+    this.setState({ weirdness: weirdness[0] })
+    const { searchTerm } = this.state;
+    const { dispatch } = this.props;
+    dispatch(fetchGifIfNeeded(searchTerm, weirdness[0]));
+  }
+
   render() {
-    const { isFetching, favorites, gif } = this.props;
-    if (!gif || isFetching) {
+    const { favorites, gifs } = this.props;
+    const { gif } = gifs.gifs;
+    if (!gif || gifs.isFetching) {
       return null;
     }
     return (
       <Fragment>
-        <SplitterLayout
-          secondaryInitialSize={200}
-          secondaryMinSize={200}
-        >
-          <div>
-            <SplitterLayout
-              vertical
-            >
-              <div>
-                <p>
-                  Find out how weird you are by selecting the GIFs that
-                  make you laugh. We&rsquo;ll show you the least weird ones to
-                  start, but you can move the slider to make them weirder.
-                </p>
-                <p>
-                When you find a GIF you like, press the Like button. Once
-                you like 5 GIFs, we&rsquo;ll show you how weird you are.
-                </p>
-                Search term
-                <br />
-                <input />
-                <button type="submit">SEARCH</button>
-              </div>
-              <div>
-                <h2>YOUR RESULT</h2>
-                <Gif gif={gif} />
-              </div>
-            </SplitterLayout>
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <p>
+              Find out how weird you are by selecting the GIFs that
+              make you laugh. We&rsquo;ll show you the least weird ones to
+              start, but you can move the slider to make them weirder.
+            </p>
+            <p>
+              When you find a GIF you like, press the Like button. Once
+              you like 5 GIFs, we&rsquo;ll show you how weird you are.
+            </p>
+            Search term
+            <br />
+            <input />
+            <button type="submit">SEARCH</button>
+            <h2>YOUR RESULT</h2>
+            <Gif gif={gif} />
+            <CustomSlider
+              onChange={this.onChange.bind(this)} // eslint-disable-line react/jsx-no-bind
+            />
           </div>
-          <div>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
             <h2>YOUR LIKED GIFS</h2>
             <ul>
               {favorites.length > 0 ? favorites.forEach((value) => {
@@ -77,12 +72,11 @@ class HomeView extends Component {
                   </li>
                 )
               }) : null
-            }
+          }
             </ul>
-
             <Link to="/your-weirdness">CALCULATE MY WEIRDNESS SCORE</Link>
           </div>
-        </SplitterLayout>
+        </div>
         <ErrorBoundary>
           <HomeWithError {...this.props} />
         </ErrorBoundary>
@@ -93,10 +87,7 @@ class HomeView extends Component {
 
 const mapStateToProps = (state) => ({
   favorites: state.favorites,
-  gif: state.gifs.gifs.gif,
-  isFetching: state.gifs.isFetching,
+  gifs: state.gifs,
 });
 
-export default connect(
-  mapStateToProps,
-)(HomeView);
+export default connect(mapStateToProps)(HomeView);

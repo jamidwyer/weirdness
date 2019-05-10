@@ -78,15 +78,12 @@ All your javascript code lives in folder `src/js`
 
 ```
 ### TODO
-* Manage API key
-* Build mockup
-* Clean commits
-* Enter a search term
-* Acceptable style
-* The app will display a matching GIF starting on 0
-weirdness: https://developers.giphy.com/docs/#operation--gifs-translate-get
-* If no results, indicate that
 * Using a slider, users should be able to then increase the weirdness and receive weirder and weirder results through 10 on Giphy’s weirdness scale
+* Enter a search term
+* Clean commits
+* Like functionality
+* Acceptable style
+* If no results, indicate that
 * When a user finds a GIF they like, they can add it to their list of favorite GIFs by pressing the Like button
 * Only allow one liked GIF per search term
 * After they like, prompt them to enter a new search term
@@ -101,6 +98,7 @@ the nearest whole number, on a new route (e.g. “/results”)
 * Squash if needed
 * Review user requirements again
 * Improve user experience if needed
+* Get rid of views folder
 * Responsiveness
 * Build increment alternative
 * Build safe mode
@@ -114,6 +112,8 @@ the nearest whole number, on a new route (e.g. “/results”)
 * Use yarn
 * Internationalize
 * PR for outdated boilerplate dependencies
+* CI: https://github.com/marketplace/category/continuous-integration
+* Use Navigation or remove it
 
 ### Rationale
 This project was started with [react-redux-boilerplate](https://github.com/iroy2000/react-redux-boilerplate), recommended as a [React starter kit](https://reactjs.org/community/starter-kits.html).
