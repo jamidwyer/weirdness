@@ -1,29 +1,32 @@
 import React, { PureComponent, Fragment } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 
 import LazyLoading from '../../common/components/LazyLoading'
 
-// This is lazy loading example
 const Gif = LazyLoading(() => import('../../common/components/Gif/Gif'))
 
 class YourWeirdnessView extends PureComponent {
-  static propTypes = {
-    favorites: PropTypes.object.isRequired,
-  }
-
   render() {
     const { favorites } = this.props;
-    console.log(favorites);
+    const total = favorites.reduce((cnt, o) => { return cnt + o.score; }, 0);
+    const average = total / favorites.length;
+
     return (
       <Fragment>
-        <h2>YOUR LIKED GIFS</h2>
+        <h2>
+          You scored
+          {' '}
+          {average}
+          {' '}
+out of 10 on the weirdness scale!
+        </h2>
+        <h3>The GIFs you liked</h3>
         <ul>
           {favorites.map((value) => {
             return (
-              <li>
-                <Gif gif={value.id} />
+              <li key={value.id}>
+                <Gif gif={value} />
               </li>
             )
           })}
