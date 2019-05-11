@@ -11,7 +11,7 @@ class RightPane extends PureComponent {
     }
     return (
       <Fragment>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', flex: 0.4, marginLeft: 20, alignItems: 'center' }}>
           <h2>YOUR LIKED GIFS</h2>
           <GifList
             favorites={favorites}
