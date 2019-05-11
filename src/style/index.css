@@ -7,12 +7,43 @@
   margin-left: 60px;
   margin-right: 60px;
 
-  .content {
-
+  button {
+    border: 1px solid rgb(255, 196, 0);
+    border-radius: 2px;
+    background-color: rgb(255, 196, 0);
   }
 
-  h1, h2 {
+  input {
+    border: 1px solid rgb(155, 155, 155);
+    border-radius: 2px;
+  }
+
+  p {
+    margin-top: 0.6em;
+    margin-bottom: 0.6em;
+  }
+
+  h1, h2, h3 {
     /* This is how you use custom fonts */
     font-family: YourFavoriteFont;
+    font-size: 1.2em;
+    margin-top: 0.6em;
+    margin-bottom: 0.6em;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 0;
+  }
+
+  li {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    list-style-type: none;
+    margin-right: 20;
   }
 }

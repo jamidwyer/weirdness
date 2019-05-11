@@ -77,38 +77,17 @@ All your javascript code lives in folder `src/js`
 
 ```
 ### TODO
-* Once a user selects their 5 favorite GIFs, they will be
-prompted to see their result telling them how weird they are.
-* When users click the “Calculate…” button, they should see their average “weirdness”, to the nearest whole number, on a new route (e.g. “/results”)
-* Clean commits
+* User can unlike a GIF
+* Limit to 5 gifs
+* Slider state bug
 * Acceptable style
 * Only allow one liked GIF per search term
 * After they like, prompt them to enter a new search term
 * If no results, indicate that
-* User can unlike a GIF
 * Loading indicators
 * Error states
 * Input validation
-* Squash if needed
-* Review requirements again
-* Improve user experience if needed
-* Get rid of views folder
-* Responsiveness
-* Build increment alternative
-* Build safe mode
-* npm build:s3
 * Discuss pros and cons of what I did
-* Design shine
-* Tests
-* Use api folder
-* Cull dependencies -- babel type check, cli dashboard
-* Look into deploy
-* Internationalize
-* Docker
-* Use yarn
-* PR for outdated boilerplate dependencies
-* CI: https://github.com/marketplace/category/continuous-integration
-* Use Navigation or remove it
 
 ### Rationale
 This project was started with [react-redux-boilerplate](https://github.com/iroy2000/react-redux-boilerplate), recommended as a [React starter kit](https://reactjs.org/community/starter-kits.html).

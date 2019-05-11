@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 
 import {
   fetchGifIfNeeded,
-} from '../../redux/actions/gifs'
+} from '../../redux/actions/gifs';
 import {
   setFavorite,
-} from '../../redux/actions/favorites'
+} from '../../redux/actions/favorites';
 
 import { CustomSlider } from '../../common/components/CustomSlider';
 import { RightPane } from '../../common/components/RightPane';
@@ -57,14 +57,11 @@ class HomeView extends Component {
   render() {
     const { favorites, gifs } = this.props;
     const { gif } = gifs;
-    if (!gif || gifs.isFetching) {
-      return null;
-    }
-
+console.log(gif);
     /* eslint-disable no-return-assign */
     return (
       <div style={{ display: 'flex', flexDirection: 'row' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', flex: 0.8 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', flex: 0.6 }}>
           <p>
             Find out how weird you are by selecting the GIFs that
             make you laugh. We&rsquo;ll show you the least weird ones to
@@ -81,20 +78,38 @@ class HomeView extends Component {
               Search Term:
               <input name="searchTerm" type="text" id="searchTerm" ref={(input) => this.input = input} />
             </label>
-            <input type="submit" value="Submit" />
+            <button type="submit">Submit</button>
           </form>
 
-          <h2>YOUR RESULT</h2>
-          <Gif gif={gif} />
+          { gif && gif.url && !gifs.isFetching
+            ? (
+              <div>
+                <h2>YOUR RESULT</h2>
+                <Gif
+                  gif={gif}
+                  height={200}
+                  width={320}
+                />
 
-          <button
-            onClick={this.handleLike}
-            type="button"
-            style={{ width: 100, height: 50 }}
-          >
-            <span role="img" aria-label="thumbs-up">👍</span>
-          </button>
-
+                <button
+                  onClick={this.handleLike}
+                  type="button"
+                  style={{
+                    width: 100,
+                    height: 50,
+                    display: 'flex',
+                    alignSelf: 'center',
+                    justifyContent: 'center',
+                    textAlign: 'center',
+                    alignItems: 'center',
+                    margin: '0 auto',
+                  }}
+                >
+                  <span role="img" aria-label="thumbs-up" style={{ fontSize: '40px', textAlign: 'center' }}>👍</span>
+                </button>
+              </div>
+            )
+            : null }
           <CustomSlider
             onChange={this.onChange.bind(this)} // eslint-disable-line react/jsx-no-bind
           />
