@@ -3,22 +3,25 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import {
-//  setFavorite,
   fetchGifIfNeeded,
 } from '../../redux/actions/gifs'
+import {
+  setFavorite,
+} from '../../redux/actions/favorites'
 
 import LazyLoading from '../../common/components/LazyLoading';
 import { HomeWithError } from '../../common/components/Home';
 import { ErrorBoundary } from '../../common/components/Utilities';
 import { CustomSlider } from '../../common/components/CustomSlider';
 
-// This is lazy loading example
 const Gif = LazyLoading(() => import('../../common/components/Gif/Gif'));
 
 class HomeView extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleLike = this.handleLike.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   state = {
@@ -39,13 +42,20 @@ class HomeView extends Component {
     dispatch(fetchGifIfNeeded(searchTerm, weirdness[0]));
   }
 
+  handleLike() {
+    const { gifs } = this.props;
+    const { gif } = gifs.gifs;
+    const { weirdness } = this.state;
+    const { dispatch } = this.props;
+    dispatch(setFavorite(gif, weirdness));
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const { weirdness } = this.state;
     const searchTerm = this.input.value;
     this.setState({ searchTerm })
     const { dispatch } = this.props;
-    console.log(searchTerm, weirdness);
     dispatch(fetchGifIfNeeded(searchTerm, weirdness));
   }
 
@@ -82,6 +92,15 @@ class HomeView extends Component {
 
             <h2>YOUR RESULT</h2>
             <Gif gif={gif} />
+
+            <button
+              onClick={this.handleLike}
+              type="button"
+              style={{ width: 100, height: 50 }}
+            >
+              <span role="img" aria-label="thumbs-up">👍</span>
+            </button>
+
             <CustomSlider
               onChange={this.onChange.bind(this)} // eslint-disable-line react/jsx-no-bind
             />

@@ -1,26 +1,15 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 import {
   REMOVE_FAVORITE,
-  SELECT_SCORE,
   SET_FAVORITE,
   GET_FAVORITES,
-} from '../actions/favorites'
+} from '../actions/favorites';
 
-function selectedScore(state = 0, action) {
-  switch (action.type) {
-    case SELECT_SCORE:
-      return action.score
-    default:
-      return state
-  }
-}
+const initialState = {
+  favorites: [],
+};
 
-function favorites(
-  state = {
-    favorites: [],
-  },
-  action
-) {
+function favorites(state = initialState, action) {
   switch (action.type) {
     case GET_FAVORITES:
       return Object.assign({}, state, {
@@ -30,7 +19,10 @@ function favorites(
     case REMOVE_FAVORITE:
       return state;
     case SET_FAVORITE:
-      return state;
+      return {
+        ...state,
+        favorites: [...state.favorites, action.payload],
+      }
     default:
       return state;
   }
@@ -38,7 +30,6 @@ function favorites(
 
 const rootReducer = combineReducers({
   favorites,
-  selectedScore,
-})
+});
 
 export default rootReducer;
