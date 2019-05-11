@@ -8,11 +8,9 @@ import {
   setFavorite,
 } from '../../redux/actions/favorites'
 
-import LazyLoading from '../../common/components/LazyLoading';
 import { CustomSlider } from '../../common/components/CustomSlider';
 import { RightPane } from '../../common/components/RightPane';
-
-const Gif = LazyLoading(() => import('../../common/components/Gif/Gif'));
+import { Gif } from '../../common/components/Gif';
 
 class HomeView extends Component {
   constructor(props) {
@@ -100,6 +98,7 @@ class HomeView extends Component {
           <CustomSlider
             onChange={this.onChange.bind(this)} // eslint-disable-line react/jsx-no-bind
           />
+
         </div>
         <RightPane
           favorites={favorites}

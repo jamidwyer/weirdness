@@ -16,9 +16,9 @@ class RightPane extends PureComponent {
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <h2>YOUR LIKED GIFS</h2>
           <ul>
-            {favorites.forEach((value) => {
+            {favorites.map((value) => {
               return (
-                <li>
+                <li key={value.id}>
                   <Gif gif={value.gif} />
                 </li>
               )
