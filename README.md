@@ -77,17 +77,15 @@ All your javascript code lives in folder `src/js`
 
 ```
 ### TODO
-* When a user finds a GIF they like, they can add it to their list of favorite GIFs by pressing the Like button
-* Clean commits
-* Slider doesn't trigger re-render (gifs.gifs.gif...)
-* Acceptable style
-* If no results, indicate that
-* Only allow one liked GIF per search term
-* After they like, prompt them to enter a new search term
-* User can unlike a GIF
 * Once a user selects their 5 favorite GIFs, they will be
 prompted to see their result telling them how weird they are.
 * When users click the “Calculate…” button, they should see their average “weirdness”, to the nearest whole number, on a new route (e.g. “/results”)
+* Clean commits
+* Acceptable style
+* Only allow one liked GIF per search term
+* After they like, prompt them to enter a new search term
+* If no results, indicate that
+* User can unlike a GIF
 * Loading indicators
 * Error states
 * Input validation

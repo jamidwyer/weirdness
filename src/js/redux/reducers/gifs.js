@@ -1,9 +1,8 @@
-import { combineReducers } from 'redux'
 import {
   REQUEST_GIFS,
   REQUEST_GIFS_SUCCESS,
   REQUEST_GIFS_FAILED,
-} from '../actions/gifs'
+} from '../actions/gifs';
 
 const initialState = {
   isFetching: false,
@@ -27,6 +26,7 @@ function gifs(state = initialState, action) {
         // gif: action.payload,
       };
     case REQUEST_GIFS_FAILED:
+      console.log('fail');
       return {
         ...state,
         isFetching: false,
@@ -36,8 +36,4 @@ function gifs(state = initialState, action) {
   }
 }
 
-const rootReducer = combineReducers({
-  gifs,
-})
-
-export default rootReducer;
+export default gifs;
