@@ -65,23 +65,21 @@ All your javascript code lives in folder `src/js`
     -- js/
       -- common/
         -- api/          --> all api requests
-        -- components/   --> all share components
-        -- types/        --> all flow types
+        -- components/   --> shared components
       -- redux/
-        -- modules/      --> all redux code
-        -- selectors/    --> all reselect code
+        -- actions/      --> redux actions
+        -- reducers/     --> redux reducers
       -- utility/        --> all non JSX utility
-      -- views/          --> all JSX code hook up with Route ( HoC ) or page specific components
+      -- views/          --> all JSX code hook up with Route ( HoC ) or page-specific components
     -- style/            --> all global styles, layout, config
-    -- assets/           --> all static assets ( image, fonts ... etc )
-      -- template/       --> you probably won't touch this unless you want to create new template
+    -- assets/           --> all static assets ( image, fonts, etc. )
+      -- template/       --> the HTML app container
 
 ```
 ### TODO
-* Enter a search term
-* Clean commits
 * When a user finds a GIF they like, they can add it to their list of favorite GIFs by pressing the Like button
-* Slider doesn't trigger re-render
+* Clean commits
+* Slider doesn't trigger re-render (gifs.gifs.gif...)
 * Acceptable style
 * If no results, indicate that
 * Only allow one liked GIF per search term
@@ -94,7 +92,7 @@ prompted to see their result telling them how weird they are.
 * Error states
 * Input validation
 * Squash if needed
-* Review user requirements again
+* Review requirements again
 * Improve user experience if needed
 * Get rid of views folder
 * Responsiveness
@@ -104,11 +102,12 @@ prompted to see their result telling them how weird they are.
 * Discuss pros and cons of what I did
 * Design shine
 * Tests
-* Cull dependencies -- reselect, babel type check, cli dashboard
+* Use api folder
+* Cull dependencies -- babel type check, cli dashboard
 * Look into deploy
+* Internationalize
 * Docker
 * Use yarn
-* Internationalize
 * PR for outdated boilerplate dependencies
 * CI: https://github.com/marketplace/category/continuous-integration
 * Use Navigation or remove it
@@ -119,7 +118,6 @@ This project was started with [react-redux-boilerplate](https://github.com/iroy2
 react-redux-boilerplate includes:
 * ES6 / ES7
 * PostCSS ( with CSS modules activated by default )
-* Reselect
 * i18n / i10n supports ( react-intl )
 * Lazy Loading component supports
 * Type Checking with Babel Type Check ( Flow syntax )

@@ -48,7 +48,6 @@ function getGif(searchTerm, weirdness) {
         // Giphy
         dispatch(requestGifsSuccess(res.data));
         // Placeholder
-        console.log(res.data);
         // dispatch(requestGifsSuccess(res.data[0]));
       })
       .catch((err) => {
