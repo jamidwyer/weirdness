@@ -56,7 +56,6 @@ export function Handle({
   disabled,
   getHandleProps,
 }) {
-  console.log('update');
   return (
     <Fragment>
       <div
@@ -249,10 +248,6 @@ Tick.defaultProps = {
 }
 
 class CustomSlider extends Component { // eslint-disable-line react/prefer-stateless-function
-  componentWillUnmount() {
-    console.log('unmount slide');
-  }
-
   render() {
     return (
       <div style={{ marginTop: 50, width: '100%' }}>

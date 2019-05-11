@@ -16,7 +16,6 @@ function favorites(state = initialState, action) {
     case REMOVE_FAVORITE:
       return state;
     case SET_FAVORITE:
-      console.log(action.payload);
       return [
         ...state,
         action.payload,

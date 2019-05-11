@@ -26,7 +26,6 @@ function gifs(state = initialState, action) {
         // gif: action.payload,
       };
     case REQUEST_GIFS_FAILED:
-      console.log('fail');
       return {
         ...state,
         isFetching: false,

@@ -1,10 +1,8 @@
-import React, { PureComponent, Fragment } from 'react'
-import { connect } from 'react-redux'
+import React, { PureComponent, Fragment } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import LazyLoading from '../../common/components/LazyLoading'
-
-const Gif = LazyLoading(() => import('../../common/components/Gif/Gif'))
+import { GifList } from '../../common/components/GifList';
 
 class YourWeirdnessView extends PureComponent {
   render() {
@@ -17,20 +15,14 @@ class YourWeirdnessView extends PureComponent {
         <h2>
           You scored
           {' '}
-          {average}
+          {Math.round(average)}
           {' '}
-out of 10 on the weirdness scale!
+          out of 10 on the weirdness scale!
         </h2>
         <h3>The GIFs you liked</h3>
-        <ul>
-          {favorites.map((value) => {
-            return (
-              <li key={value.id}>
-                <Gif gif={value} />
-              </li>
-            )
-          })}
-        </ul>
+        <GifList
+          favorites={favorites}
+        />
         <Link to="/">Start Over</Link>
       </Fragment>
     )
@@ -39,8 +31,8 @@ out of 10 on the weirdness scale!
 
 const mapStateToProps = (state) => ({
   favorites: state.favorites,
-})
+});
 
 export default connect(
   mapStateToProps,
-)(YourWeirdnessView)
+)(YourWeirdnessView);
