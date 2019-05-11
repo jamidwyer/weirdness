@@ -64,7 +64,7 @@ class HomeView extends Component {
     /* eslint-disable no-return-assign */
     return (
       <div style={{ display: 'flex', flexDirection: 'row' }}>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', flex: 0.8 }}>
           <p>
             Find out how weird you are by selecting the GIFs that
             make you laugh. We&rsquo;ll show you the least weird ones to
