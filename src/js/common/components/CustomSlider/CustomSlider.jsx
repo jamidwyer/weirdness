@@ -56,6 +56,7 @@ export function Handle({
   disabled,
   getHandleProps,
 }) {
+  console.log('update');
   return (
     <Fragment>
       <div
@@ -248,16 +249,19 @@ Tick.defaultProps = {
 }
 
 class CustomSlider extends Component { // eslint-disable-line react/prefer-stateless-function
+  componentWillUnmount() {
+    console.log('unmount slide');
+  }
+
   render() {
     return (
-      <div style={{ width: '100%' }}>
+      <div style={{ marginTop: 50, width: '100%' }}>
         <Slider
-          mode={1}
           step={1}
           domain={[0, 10]}
           values={[0]}
           rootStyle={sliderStyle}
-          onChange={this.props.onChange} // eslint-disable-line react/destructuring-assignment
+          onSlideEnd={this.props.onChange} // eslint-disable-line react/destructuring-assignment
         >
           <Rail>
             {({ getRailProps }) => <SliderRail getRailProps={getRailProps} />}

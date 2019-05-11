@@ -6,7 +6,7 @@ class Gif extends PureComponent {
     if (!gif || !gif.images) {
       return null;
     }
-    //    const jpg = `${gif.thumbnailUrl}.jpg`;
+    // const jpg = `${gif.thumbnailUrl}.jpg`;
     return (
       <div>
         <h3>{gif.title}</h3>

@@ -1,13 +1,10 @@
-import { combineReducers } from 'redux';
 import {
   REMOVE_FAVORITE,
   SET_FAVORITE,
   GET_FAVORITES,
 } from '../actions/favorites';
 
-const initialState = {
-  favorites: [],
-};
+const initialState = [];
 
 function favorites(state = initialState, action) {
   switch (action.type) {
@@ -19,17 +16,14 @@ function favorites(state = initialState, action) {
     case REMOVE_FAVORITE:
       return state;
     case SET_FAVORITE:
-      return {
+      console.log(action.payload);
+      return [
         ...state,
-        favorites: [...state.favorites, action.payload],
-      }
+        action.payload,
+      ];
     default:
       return state;
   }
 }
 
-const rootReducer = combineReducers({
-  favorites,
-});
-
-export default rootReducer;
+export default favorites;

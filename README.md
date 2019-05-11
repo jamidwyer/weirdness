@@ -77,7 +77,7 @@ All your javascript code lives in folder `src/js`
 
 ```
 ### TODO
-* When a user finds a GIF they like, they can add it to their list of favorite GIFs by pressing the Like button
+* Show favorites
 * Clean commits
 * Slider doesn't trigger re-render (gifs.gifs.gif...)
 * Acceptable style
