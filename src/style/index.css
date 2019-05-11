@@ -11,8 +11,16 @@
 
   }
 
-  h1, h2 {
+  p {
+    margin-top: 0.6em;
+    margin-bottom: 0.6em;
+  }
+
+  h1, h2, h3 {
     /* This is how you use custom fonts */
     font-family: YourFavoriteFont;
+    font-size: 1.2em;
+    margin-top: 0.6em;
+    margin-bottom: 0.6em;
   }
 }

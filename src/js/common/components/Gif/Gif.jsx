@@ -10,7 +10,7 @@ class Gif extends PureComponent {
     return (
       <div>
         <h3>{gif.title}</h3>
-        <video width="320" height="240" autoPlay loop muted>
+        <video width="320" height="200" autoPlay loop muted>
           <source src={gif.images.original_mp4.mp4} type="video/mp4" />
           <source src="movie.ogg" type="video/ogg" />
           Your browser does not support the video tag.
